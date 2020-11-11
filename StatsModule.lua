@@ -6,6 +6,8 @@ Feel free to use this your game
 
 --]]
 
+function round(x) return x + 0.5 - (x + 0.5) % 1 end
+
 local RS = game:GetService("RunService")
 
 local RepStorage = game:GetService("ReplicatedStorage")
@@ -37,8 +39,11 @@ function module:PingInit(label,pre,post)
 	
 	spawn(function()
 		while wait(1) do
-			local ping = tostring(GetPing:InvokeServer(tick()))
-			label.Text = pre..ping..post
+			local ping = GetPing:InvokeServer(os.time())
+			
+			print(ping)
+			
+			label.Text = pre..round(ping)..post
 		end
 	end)
 end
@@ -49,7 +54,7 @@ function module:PFPSInit(label,pre,post)
 	
 	spawn(function()
 		while wait(1) do
-			local PFPS = workspace:GetRealPhysicsFPS()
+			local PFPS = round(workspace:GetRealPhysicsFPS())
 			label.Text = pre..PFPS..post
 		end
 	end)
