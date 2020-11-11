@@ -9,7 +9,7 @@ script.Parent:WaitForChild("StatsModule").Parent = RepStorage
 local PingRemote = Instance.new("RemoteFunction",RepStorage)
 PingRemote.Name = "GetPing"
 
-function RetPing(plr,clientTick) return roundUp((tick() - clientTick) * 1000) end
+function RetPing(plr,clientTick) return roundUp((tick() - clientTick) / 1000) end
 PingRemote.OnServerInvoke = RetPing
 
 -- PING END --
