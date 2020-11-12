@@ -38,12 +38,19 @@ function module:PingInit(label,pre,post)
 	local post = post or ""
 	
 	spawn(function()
+		local prePing = 0
 		while wait(1) do
-			local ping = GetPing:InvokeServer(os.time())
+			local preTime = tick()
+			GetPing:InvokeServer(prePing)
+			local postTime = tick()
 			
-			print(ping)
+			local ping = round((postTime - preTime)*1000)
+			
+			--print(ping) -- debug
 			
 			label.Text = pre..round(ping)..post
+			
+			prePing = ping
 		end
 	end)
 end

@@ -1,4 +1,10 @@
-function round(x) return x + 0.5 - (x + 0.5) % 1 end
+--[[
+
+MADE BY BEANOOF
+
+Feel free to use this your game
+
+--]]
 
 local RepStorage = game:GetService("ReplicatedStorage")
 
@@ -13,10 +19,9 @@ end
 
 game.Players.PlayerAdded:Connect(addPingVal)
 
-function RetPing(plr,clientTick)
-	local ping = os.time() - clientTick
-	plr:WaitForChild("Ping").Value = ping 
-	return ping
+function RetPing(plr,pre)
+	plr:WaitForChild("Ping").Value = pre
+	return true
 end
 
 local PingRemote = Instance.new("RemoteFunction",RepStorage)
